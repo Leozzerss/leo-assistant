@@ -13,9 +13,9 @@ macOS masaüstü sesli asistan + tarayıcıdan erişilebilir web sürümü.
 | Mod | Nerede çalışır | Özellikler |
 |-----|----------------|------------|
 | **Masaüstü (Mac)** | Sadece macOS | Sesli komut, takvim, WhatsApp, ekran analizi, uygulama açma — **tam özellik** |
-| **Web (Online)** | Herhangi bir tarayıcı | Sohbet, hava durumu, genel AI görevleri |
+| **Web (Online)** | Herhangi bir tarayıcı | **Sesli konuşma** + yazılı sohbet + hava durumu |
 
-> Web sürümü macOS'a özel araçları (takvim, WhatsApp, uygulama açma vb.) çalıştıramaz. Tam özellik için Mac uygulamasını kullanın.
+> Web sürümü **sesli konuşma** ve yazılı sohbet sunar. Takvim, WhatsApp, uygulama açma gibi Mac özellikleri web'de çalışmaz.
 
 ---
 

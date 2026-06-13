@@ -11,13 +11,22 @@
     <header class="header">
       <div class="brand">
         <h1>LEO</h1>
-        <p>Personal AI Assistant · Albania</p>
+        <p>Voice AI Assistant · Albania</p>
       </div>
-      <div class="status" id="status">Bağlanıyor...</div>
+      <div class="status-wrap">
+        <div class="status" id="status">Bağlanıyor...</div>
+        <div class="voice-state" id="voiceState">Ses: kapalı</div>
+      </div>
     </header>
 
     <main class="main">
       <aside class="sidebar">
+        <section class="card voice-card">
+          <h2>Sesli Konuşma</h2>
+          <p class="muted">Mikrofon izni verin, LEO ile canlı konuşun.</p>
+          <button id="voiceToggle" class="btn voice-btn">🎙️ Sesi Aç</button>
+          <button id="muteToggle" class="btn ghost" disabled>Mikrofonu Kapat</button>
+        </section>
         <section class="card">
           <h2>Hava Durumu</h2>
           <div id="weather" class="weather">Yükleniyor...</div>
@@ -32,7 +41,7 @@
       <section class="chat">
         <div id="messages" class="messages"></div>
         <form id="chatForm" class="composer">
-          <input id="messageInput" type="text" placeholder="LEO'ya yazın..." autocomplete="off" />
+          <input id="messageInput" type="text" placeholder="LEO'ya yazın veya mikrofonu açın..." autocomplete="off" />
           <button type="submit" class="btn primary">Gönder</button>
         </form>
       </section>
@@ -40,9 +49,10 @@
 
     <footer class="footer">
       <span>LEO — Proprietary. All rights reserved.</span>
-      <span>Web sürümü · Masaüstü tam özellikler için Mac uygulamasını kullanın</span>
+      <span>Sesli + yazılı web sürümü</span>
     </footer>
   </div>
+  <script src="/static/voice.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>

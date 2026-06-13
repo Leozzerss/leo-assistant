@@ -15,16 +15,24 @@ function addMessage(text, role) {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
+window.leoAddMessage = addMessage;
+
 async function loadHealth() {
   try {
     const res = await fetch("/api/health");
     const data = await res.json();
     locationEl.textContent = data.location || "Lezhë, Albania";
-    statusEl.textContent = data.api_ready ? "● Online" : "● API key eksik";
-    if (!data.api_ready) {
-      addMessage("Sunucuda GEMINI_API_KEY ayarlanmamış. Sohbet çalışmaz.", "sys");
+    if (data.api_ready) {
+      statusEl.textContent = data.voice_ready ? "● Online · Ses hazır" : "● Online";
+      addMessage(
+        data.voice_ready
+          ? "LEO hazır. Yazın veya 🎙️ Sesi Aç ile konuşun."
+          : "LEO hazır (API key eksik).",
+        "sys"
+      );
     } else {
-      addMessage("LEO hazır. Nasıl yardımcı olabilirim?", "sys");
+      statusEl.textContent = "● API key eksik";
+      addMessage("Sunucuda GEMINI_API_KEY ayarlanmamış.", "sys");
     }
   } catch {
     statusEl.textContent = "● Offline";
@@ -50,7 +58,7 @@ form.addEventListener("submit", async (e) => {
 
   input.value = "";
   addMessage(message, "user");
-  const submitBtn = form.querySelector("button");
+  const submitBtn = form.querySelector("button[type='submit']");
   submitBtn.disabled = true;
 
   try {

@@ -21,7 +21,17 @@ body {
 .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
 .brand h1 { margin: 0; color: var(--primary); letter-spacing: 0.2em; }
 .brand p { margin: 4px 0 0; color: var(--muted); font-size: 0.9rem; }
+.status-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
 .status { color: var(--primary); font-size: 0.9rem; }
+.voice-state { color: var(--muted); font-size: 0.8rem; }
+
+.voice-card .voice-btn {
+  width: 100%;
+  margin-top: 8px;
+  background: #0a3a36;
+  font-size: 1rem;
+}
+.voice-card .voice-btn:hover { background: var(--primary); color: #00110f; }
 
 .main { display: grid; grid-template-columns: 280px 1fr; gap: 16px; flex: 1; }
 .sidebar { display: flex; flex-direction: column; gap: 12px; }

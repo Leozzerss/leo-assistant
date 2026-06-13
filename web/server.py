@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-LEO Web — Tarayıcıdan erişilebilir AI asistan.
+LEO Web — Tarayıcıdan erişilebilir AI asistan (metin + sesli).
 LEO — Proprietary. All rights reserved.
 """
 
@@ -11,7 +11,7 @@ import os
 import sys
 from pathlib import Path
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, WebSocket
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -23,11 +23,12 @@ if str(BASE_DIR) not in sys.path:
 
 from app_config import get_app_config_value, get_default_location  # noqa: E402
 from actions.weather import get_weather_summary  # noqa: E402
+from web.live_bridge import handle_voice_session  # noqa: E402
 
 PROMPT_PATH = BASE_DIR / "core" / "prompt_web.txt"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
-app = FastAPI(title="LEO", version="1.0.0")
+app = FastAPI(title="LEO", version="1.1.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -87,6 +88,8 @@ def health():
         "name": "LEO",
         "location": get_default_location(),
         "api_ready": bool(_get_client()),
+        "voice_ready": bool(get_api_key()),
+        "voice_ws": "/ws/voice",
     }
 
 
@@ -142,6 +145,19 @@ def chat(req: ChatRequest):
         _sessions[session_id] = history[-40:]
 
     return ChatResponse(reply=reply, session_id=session_id)
+
+
+@app.websocket("/ws/voice")
+async def voice_ws(websocket: WebSocket):
+    api_key = get_api_key()
+    if not api_key:
+        await websocket.accept()
+        await websocket.send_text(
+            '{"type":"error","message":"GEMINI_API_KEY ayarlanmamis."}'
+        )
+        await websocket.close()
+        return
+    await handle_voice_session(websocket, api_key)
 
 
 @app.get("/")
