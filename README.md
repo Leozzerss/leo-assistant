@@ -27,7 +27,11 @@ bash setup.sh
 bash start.sh
 ```
 
-İlk açılışta Gemini API anahtarını girin: https://aistudio.google.com
+Mac kurulumu `requirements-desktop.txt` kullanır (mikrofon dahil):
+
+```bash
+pip install -r requirements-desktop.txt
+```
 
 ---
 
@@ -67,17 +71,24 @@ git push -u origin main
 
 ## 4) Online yayınlama (Render — ücretsiz)
 
-1. https://render.com hesabı açın
-2. **New → Blueprint** veya **Web Service**
-3. GitHub reposunu bağlayın
-4. Ortam değişkeni ekleyin:
-   - `GEMINI_API_KEY` = Gemini API anahtarınız
-   - `LEO_WEATHER_LOCATION` = `Lezhë, Albania` (isteğe bağlı)
-5. Deploy tamamlanınca URL: `https://leo-web-xxxx.onrender.com`
+> **Dikkat:** Render'da **Static Site değil**, **Web Service** seçin. Static Site `pyaudio` hatası verir.
 
-`render.yaml` dosyası bu akış için hazırdır.
+### Yöntem A — Docker (önerilen)
 
-### Docker ile deploy
+1. https://render.com → GitHub ile giriş
+2. **New → Blueprint** → repo: `leo-assistant`
+3. Ortam değişkeni: `GEMINI_API_KEY` = API anahtarınız
+4. Deploy → URL: `https://leo-assistant-xxxx.onrender.com`
+
+`render.yaml` ve `Dockerfile` web için `requirements-web.txt` kullanır (pyaudio yok).
+
+### Yöntem B — Python Web Service (Docker olmadan)
+
+- **Build Command:** `pip install -r requirements-web.txt`
+- **Start Command:** `python -m web.server`
+- **Environment:** `GEMINI_API_KEY`, `LEO_WEATHER_LOCATION=Lezhë, Albania`
+
+### Docker yerel test
 
 ```bash
 docker build -t leo-web .

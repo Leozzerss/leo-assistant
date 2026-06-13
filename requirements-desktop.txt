@@ -1,0 +1,6 @@
+# LEO — Mac masaüstü tam sürüm (mikrofon + ses)
+-r requirements-web.txt
+SpeechRecognition
+pyaudio
+psutil
+Pillow

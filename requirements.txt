@@ -1,9 +1,3 @@
-# LEO — Gerekli paketler
-google-genai
-SpeechRecognition
-pyaudio
-psutil
-Pillow
-requests
-fastapi
-uvicorn[standard]
+# Mac masaüstü: pip install -r requirements-desktop.txt
+# Web / Render:  pip install -r requirements-web.txt
+-r requirements-desktop.txt

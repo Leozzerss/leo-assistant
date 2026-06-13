@@ -1,0 +1,5 @@
+# LEO Web — cloud / Render / Docker (mikrofon yok)
+google-genai
+requests
+fastapi
+uvicorn[standard]

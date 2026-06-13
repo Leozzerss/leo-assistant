@@ -93,7 +93,7 @@ fi
 
 echo "📦 Paketler yükleniyor..."
 pip install --upgrade pip -q
-pip install -r requirements.txt -q
+pip install -r requirements-desktop.txt -q
 
 echo ""
 echo "╔══════════════════════════════════════╗"
