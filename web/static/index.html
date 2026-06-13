@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEO — Personal AI Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <h1>LEO</h1>
+        <p>Personal AI Assistant · Albania</p>
+      </div>
+      <div class="status" id="status">Bağlanıyor...</div>
+    </header>
+
+    <main class="main">
+      <aside class="sidebar">
+        <section class="card">
+          <h2>Hava Durumu</h2>
+          <div id="weather" class="weather">Yükleniyor...</div>
+          <button id="refreshWeather" class="btn ghost">Yenile</button>
+        </section>
+        <section class="card">
+          <h2>Konum</h2>
+          <p id="location" class="muted">Lezhë, Albania</p>
+        </section>
+      </aside>
+
+      <section class="chat">
+        <div id="messages" class="messages"></div>
+        <form id="chatForm" class="composer">
+          <input id="messageInput" type="text" placeholder="LEO'ya yazın..." autocomplete="off" />
+          <button type="submit" class="btn primary">Gönder</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>LEO — Proprietary. All rights reserved.</span>
+      <span>Web sürümü · Masaüstü tam özellikler için Mac uygulamasını kullanın</span>
+    </footer>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

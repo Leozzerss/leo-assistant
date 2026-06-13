@@ -1,0 +1,9 @@
+# LEO — Gerekli paketler
+google-genai
+SpeechRecognition
+pyaudio
+psutil
+Pillow
+requests
+fastapi
+uvicorn[standard]
